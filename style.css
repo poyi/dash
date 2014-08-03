@@ -101,6 +101,13 @@ body {
   position: relative;
 }
 
+#startSpritz {
+  z-index: 99999;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
 .powered-by-spritz {
   position: absolute;
   bottom: 20px;
