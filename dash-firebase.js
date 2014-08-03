@@ -1,30 +1,28 @@
-// Firebase reference
-var Firebase = require("firebase");
-
 var ref = new Firebase("https://dashapp.firebaseio.com/books");
-// Attach an asynchronous callback to read the data at our posts reference
-booksRef.on('value', function (snapshot) {
-  console.log(snapshot.val());
-}, function (errorObject) {
-  console.log('The read failed: ' + errorObject.code);
-});
 
 var booksRef = ref.child("books");
 
-function funct1(evt)
-    {
-     var title = $('#book-title').text();
-
-     var post = $('#book-content').text();
-
-     var date = Date();
-        
-     console.log('Setting '+title+' '+post+' '+date);
-        
-     booksref.set({Title: title, Content: post, Date: date});
-     evt.preventDefault();
+$("#add-book").bind("click", function() {
+    var titleRaw = $("#book-title");
+    var authorRaw = $("#book-author");
+    var contentRaw = $("#book-content");
+    var bookTitle = $.trim(titleRaw.val());
+    var bookAuthor = $.trim(authorRaw.val());
+    var bookContent = $.trim(contentRaw.val());
+ 
+    if (bookTitle.length === 0) {
+        alert('contents are required to continue!');
+        } else {
+        _fireBaseRef.push({title: bookTitle, author: bookAuthor, content: bookContent}, function(error) {
+            if (error !== null) {
+                alert('Unable to push comments to Firebase!');
+            }
+        });
+ 
+        titleRaw.val("");
+        authorRaw.val("");
+        contentRaw.val("");
     }
-
-var submit = document.getElementsByTagName('button')[0];
-
-submit.onclick = funct1;
+ 
+    return false;
+});
