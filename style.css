@@ -1,9 +1,40 @@
-.add-book-form {
-  display: block;
-  height: 400px;
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background: #28333f;
+  font-family: 'Lato', sans-serif;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 24px;
+  color: white;
+  font-style: italic;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.tagline {
+  font-size: 14px;
+  font-weight: normal;
+  padding-left: 10px;
+}
+
+#spritz-reader {
+  display: none;
+}
+
+#add-book-form {
+  display: none;
+  height: 500px;
   width: 500px;
-  margin: 0 auto;
-  margin-top: 30px;
+  position: absolute;
+  padding: 0 30px 30px 30px;
+  background: #e9e9e9;
+  top: 30px;
+  right: 20%;
 }
 
 .add-book-input input {
@@ -15,4 +46,46 @@
 .add-book-textbox textarea{
   width: 500px;
   height: 200px;
+}
+
+#add-book-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.book-list {
+  position: absolute;
+  top: 120px;
+  width: 90%;
+  height: 90%;
+  left: 7%;
+}
+
+.b-label {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.b-author {
+  margin-top: 10px;
+  color: #e9e9e9;
+  font-size: 12px;
+}
+
+.b-cover {
+  margin-top: 20px;
+  max-height: 150px;
+  max-width: 200px;
+}
+
+.book-container {
+  margin-right: 30px;
+  display: inline-block;
+  float: left;
+  width: 200px;
 }
