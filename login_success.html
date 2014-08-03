@@ -9,6 +9,8 @@
 		<script type="text/javascript">
 			var hash = window.location.hash;
 			var origin = window.location.protocol + "//" + window.location.host;
+
+      var alert = alert('asdfasdf');
 			
 			// postMessage does not work reliably in IE, pass the value through localStorage
 
@@ -24,7 +26,7 @@
             }
 
             if (window.opener) {
-               window.opener.postMessage(hash, origin);
+               window.opener.postMessage(hash, origin, alert);
             }
 		</script>
 	</body>

@@ -168,7 +168,7 @@ a.powered-by-spritz {
   display: block;
 }
 
-.dropdown-toggle {
+.spritzer-dropdown-toggle {
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -225,4 +225,16 @@ a.powered-by-spritz {
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
+}
+
+.spritzer-header {
+  display: none;
+}
+
+.spritzer-container .spritzer-wpm-btn {
+padding: 0 5px;
+background-color: #F5F5F5;
+border: 1px solid;
+border-color: #ccc;
+min-height: 30px;
 }
