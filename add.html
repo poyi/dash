@@ -16,6 +16,9 @@
     <div class="add-book-input">
         <input class="form-input" type="text" id="book-author" placeholder="book author">
     </div>
+    <div class="add-book-input">
+        <input class="form-input" type="text" id="book-url" placeholder="book url">
+    </div>
     <div class="add-book-textbox">
         <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
     </div>
@@ -25,17 +28,19 @@
     $("#add-book").bind("click", function() {
       var bookTitle = $("#book-title").val();
       var bookAuthor = $("#book-author").val();
+      var bookUrl = $("#book-url").val();
       var bookContent = $("#book-content").val();
       
       var booksRef = ref.child("books");
     
-      booksRef.push({title: bookTitle, author: bookAuthor, content: bookContent}, function(error) {
+      booksRef.push({title: bookTitle, author: bookAuthor, url: bookUrl, content: bookContent}, function(error) {
           if (error !== null) {
               alert('Unable to push comments to Firebase!');
           } else {
             console.log('data sent!');
             console.log(bookTitle);
             console.log(bookAuthor);
+            console.log(bookUrl);
             console.log(bookContent);
             $(".form-input").val("");
           }
