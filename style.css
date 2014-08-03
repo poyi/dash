@@ -16,6 +16,15 @@ body {
   left: 20px;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
+#cancel-add-book {
+  height: 30px;
+  float: left;
+}
+
 #add-book {
   height: 30px;
   float: right;
@@ -97,6 +106,15 @@ body {
   width: 200px;
 }
 
+.loading {
+  color: white;
+  font-size: 32px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
 #spritz-reader {
   position: relative;
 }
@@ -130,3 +148,4 @@ body {
   z-index: 999;
   top: 0; left: 0; bottom: 0; right: 0;
 }
+
