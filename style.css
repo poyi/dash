@@ -1,0 +1,18 @@
+.add-book-form {
+  display: block;
+  height: 400px;
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.add-book-input input {
+  width: 500px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.add-book-textbox textarea{
+  width: 500px;
+  height: 200px;
+}

@@ -5,25 +5,27 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
     <script type="text/javascript" src="dash-firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all">
 </head>
 <body>
-      <form>
-      <div id="book-title" class="form-input">
-          <input type="text" placeholder="book Title">
-      </div>
-      <div id="book-author" class="form-input">
-          <input type="text" placeholder="book author">
-      </div>
-      <div id="book-content" class="form-input">
-          <textarea type="text" placeholder="book Content"></textarea>
-      </div>
-      <button id="add-book" type="submit" class="submit">Submit</button>
-    </form>
+  <form class="add-book-form">
+    <h1>Add new book</h1>
+    <div class="add-book-input">
+        <input type="text" class="form-input" id="book-title" placeholder="book Title">
+    </div>
+    <div class="add-book-input">
+        <input class="form-input" type="text" id="book-author" placeholder="book author">
+    </div>
+    <div class="add-book-textbox">
+        <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
+    </div>
+    <button id="add-book" type="submit" class="submit">Submit</button>
+  </form>
     <script>
     $("#add-book").bind("click", function() {
-      var bookTitle = $("#book-title input").val();
-      var bookAuthor = $("#book-author input").val();
-      var bookContent = $("#book-content input").val();
+      var bookTitle = $("#book-title").val();
+      var bookAuthor = $("#book-author").val();
+      var bookContent = $("#book-content").val();
       
       var booksRef = ref.child("books");
     
@@ -33,6 +35,9 @@
           } else {
             console.log('data sent!');
             console.log(bookTitle);
+            console.log(bookAuthor);
+            console.log(bookContent);
+            $(".form-input").val("");
           }
       });
       
