@@ -7,18 +7,18 @@
 
     <!-- jQuery dependency -->
     <script type="text/javascript" src="http://sdk.spritzinc.com/jQuery/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="http://sdk.spritzinc.com/js/1.0/js/spritz.min.js"></script>
-    <link id="spritz-css" rel="stylesheet" type="text/css" href="http://sdk.spritzinc.com/js/1.0/css/spritz.min.css" media="all">
+<!--     <link id="spritz-css" rel="stylesheet" type="text/css" href="http://sdk.spritzinc.com/js/1.0/css/spritz.min.css" media="all"> -->
     <link rel="stylesheet" type="text/css" href="style.css" media="all">
     <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://sdk.spritzinc.com/js/1.0/js/spritz.min.js"></script>
 
   </head>
   <body>
     <div class="logo">
       DASH <span class="tagline">A speed reading app</span>
     </div>
-    <div id="add-book-btn">Add new book</div>
+    <div id="add-book-btn">Add New Book</div>
       <div class="book-list">
         <div id="books-container"></div>
       </div>
@@ -56,72 +56,63 @@
         redirectUri: "http://tiffanyzhong.github.com/login_success.html",
       };
 
-      var onStartSpritzClick = function(event) {
-      var text = $('#inputText').val();
-      var locale = "en_us;";
-   
-      // Send to SpritzEngine to translate
-      SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
-      };
-
       (function() {
-        var spritzController = null;
+          var spritzController = null;
 
-        var onSpritzifySuccess = function(spritzText) {
-          spritzController.startSpritzing(spritzText);
-        };
-        
-        var onSpritzifyError = function(error) {
-          alert("Unable to Spritz: " + error.message);
-        };
+          var onSpritzifySuccess = function(spritzText) {
+            spritzController.startSpritzing(spritzText);
+          };
           
-        function clearTextClick() {
-            $("#inputText").val("");
-        }
-        
-        function fillTextClick() {
-          var testText = "Spritzing content from the web is also easy. All you need to do is publish content on the web, "
-            + " and our platform can transform it into Spritz Text. The default configuration simply extracts all text " 
-            + "from the HTML at the target URL, but advanced configuration allows finer control using CSS-like selectors.";       
-          var text = $("#inputText").val();     
-            $("#inputText").val(text + (text != "" ? "\n" : "") + testText);
-        }
+          var onSpritzifyError = function(error) {
+            alert("Unable to Spritz: " + error.message);
+          };
+          
+            function clearTextClick() {
+                $("#inputText").val("");
+            }
+            
+            function fillTextClick() {
+              var testText = "Spritzing content from the web is also easy. All you need to do is publish content on the web, "
+                + " and our platform can transform it into Spritz Text. The default configuration simply extracts all text " 
+                + "from the HTML at the target URL, but advanced configuration allows finer control using CSS-like selectors.";       
+              var text = $("#inputText").val();     
+                $("#inputText").val(text + (text != "" ? "\n" : "") + testText);
+            }
 
-        function onStartSpritzClick(event) {
-          var text = $('#inputText').val();
-          var locale = "en_us;";
+          function onStartSpritzClick(event) {
+            var text = $('#inputText').val();
+            var locale = "en_us;";
+            
+            // Send to SpritzEngine to translate
+            SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
+          };
           
-          // Send to SpritzEngine to translate
-          SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
-        };
-        
-        
-        // Customized options
-        var customOptions = {
-            "redicleWidth" :  434,  // Specify Redicle width
-            "redicleHeight" :   76    // Specify Redicle height
-        };
+          
+          // Customized options
+          var customOptions = {
+              "redicleWidth" :  434,  // Specify Redicle width
+              "redicleHeight" :   76    // Specify Redicle height
+          };
 
-        var init = function() {
+          var init = function() {
+            
+            $("#clear").on("click", clearTextClick);
+            $("#fill").on("click", fillTextClick);
+            $("#startSpritz").on("click", onStartSpritzClick);      
+             
+            // Construct a SpritzController passing the customization options
+            spritzController = new SPRITZ.spritzinc.SpritzerController(customOptions);
+            
+            // Attach the controller's container to this page's "spritzer" container
+            spritzController.attach($("#spritzer"));
+          };
           
-          $("#clear").on("click", clearTextClick);
-          $("#fill").on("click", fillTextClick);
-          $("#startSpritz").on("click", onStartSpritzClick);      
-           
-          // Construct a SpritzController passing the customization options
-          spritzController = new SPRITZ.spritzinc.SpritzerController(customOptions);
           
-          // Attach the controller's container to this page's "spritzer" container
-          spritzController.attach($("#spritzer"));
-        };
-        
-        
-        $(document).ready(function() {
-          init();
-        });
-
-        
-      })();
+          $(document).ready(function() {
+            init();
+          });
+          
+        })();
 
       // Add book form popup
 
@@ -161,15 +152,30 @@
         var newBook = snapshot.val();
         console.log("Author: " + newBook.author);
         console.log("Title: " + newBook.title);
+        console.log("Content: " + newBook.content);
 
         var booksContainer = $('#books-container');
  
-            $('<div/>', {class: 'book-container'})
+            $('<div>', {class: 'book-container'})
                 .html('<div class="b-label">' 
                     + newBook.title + '</div>' + '<div class="b-author">' + newBook.author + '</div>' + '<img class="b-cover" src="' + newBook.url + '"/>' + '<div class="b-content" style="display: none;">' + newBook.author + '</div>').appendTo(booksContainer);
- 
-            booksContainer.scrollTop(booksContainer.prop('scrollHeight'));
+
+        // Click to read
+        $(".book-container").click(function() {
+
+          var text = $(this).children('.b-content').text();
+
+          // Fetch the data object with clicked element ID
+          
+          console.log(text);
+
+          $('.book-list').hide();
+          $('#spritz-reader').fadeIn('Slow');
+
+        });
+
       });
+
     });
     </script>
 
