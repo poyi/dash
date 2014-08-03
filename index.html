@@ -32,7 +32,7 @@
     </div>
 
     <form id="add-book-form">
-    <h1>Add new book</h1>
+    <h1>Add a New Book</h1>
     <div class="add-book-input">
         <input type="text" class="form-input" id="book-title" placeholder="book Title">
     </div>
@@ -40,12 +40,12 @@
         <input class="form-input" type="text" id="book-author" placeholder="book author">
     </div>
     <div class="add-book-input">
-        <input class="form-input" type="text" id="book-url" placeholder="book url">
+        <input class="form-input" type="text" id="book-url" placeholder="book image url">
     </div>
     <div class="add-book-textbox">
         <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
     </div>
-    <button id="add-book" type="submit" class="submit">Submit</button>
+    <button id="add-book" type="submit" class="submit">Save & Submit Book</button>
   </form>
 
 
@@ -140,13 +140,14 @@
       var bookContent = $("#book-content").val();
       
       var booksRef = ref.child("books");
-    
+      
       booksRef.push({title: bookTitle, author: bookAuthor, url: bookUrl, content: bookContent}, function(error) {
           if (error !== null) {
               alert('Unable to push comments to Firebase!');
           } else {
             console.log('data sent!');
             $(".form-input").val("");
+            $("#add-book-form").fadeOut( "slow" );
           }
       });
       
