@@ -29,22 +29,19 @@
       var bookContent = $.trim(contentRaw.val());
       
       var booksRef = ref.child("books");
-      
-      if (bookTitle.length === 0) {
-          alert('contents are required to continue!');
+    
+      booksRef.push({title: "asfadsfsd", author: "asdfasdfads", content: "asdfsadfsd"}, function(error) {
+          if (error !== null) {
+              alert('Unable to push comments to Firebase!');
           } else {
-          booksRef.push({title: "asfadsfsd", author: "asdfasdfads", content: "asdfsadfsd"}, function(error) {
-              if (error !== null) {
-                  alert('Unable to push comments to Firebase!');
-              } else {
-                console.log('data sent!');
-              }
-          });
-   
-          titleRaw.val("");
-          authorRaw.val("");
-          contentRaw.val("");
-      }
+            console.log('data sent!');
+          }
+      });
+
+      titleRaw.val("");
+      authorRaw.val("");
+      contentRaw.val("");
+      
      
         return false;
     });
