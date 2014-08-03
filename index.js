@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   // Logo links to home page
   $('.logo').click(function() {
-    window.location = 'index.html';
+    window.location.reload();
   });
 
   // Add book form popup
