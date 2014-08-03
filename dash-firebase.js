@@ -1,4 +1,4 @@
-var ref = new Firebase("https://dashapp.firebaseio.com/books");
+var ref = new Firebase("https://dashapp.firebaseio.com/");
 
 var booksRef = ref.child("books");
 
@@ -13,9 +13,11 @@ $("#add-book").bind("click", function() {
     if (bookTitle.length === 0) {
         alert('contents are required to continue!');
         } else {
-        _fireBaseRef.push({title: bookTitle, author: bookAuthor, content: bookContent}, function(error) {
+        booksRef.push({title: bookTitle, author: bookAuthor, content: bookContent}, function(error) {
             if (error !== null) {
                 alert('Unable to push comments to Firebase!');
+            } else {
+              console.log('data sent!');
             }
         });
  
