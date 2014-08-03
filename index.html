@@ -1,177 +1,55 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Dash - Speed Reading App</title>
-    <style>
-    </style>
+<head>
+  <title>Dash - Speed Reading App</title>
 
-    <!-- jQuery dependency -->
-    <script type="text/javascript" src="http://sdk.spritzinc.com/jQuery/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="http://sdk.spritzinc.com/js/1.0/js/spritz.min.js"></script>
-    <link id="spritz-css" rel="stylesheet" type="text/css" href="http://sdk.spritzinc.com/js/1.0/css/spritz.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="style.css" media="all">
-    <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  <!-- jQuery dependency -->
+  <script src="http://sdk.spritzinc.com/jQuery/jquery-2.1.0.min.js"></script>
+  <script src="http://sdk.spritzinc.com/js/1.0/js/spritz.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+  <link id="spritz-css" rel="stylesheet" type="text/css" href="http://sdk.spritzinc.com/js/1.0/css/spritz.min.css" media="all">
+  <link rel="stylesheet" type="text/css" href="style.css" media="all">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
 
-  </head>
-  <body>
-    <div class="logo">
-      DASH <span class="tagline">A speed reading app</span>
-    </div>
-    <div id="add-book-btn">Add new book</div>
-      <div class="book-list">
-        <div id="books-container"></div>
-      </div>
+  <div class="logo">
+    DASH <span class="tagline">A speed reading app</span>
+  </div>
 
+  <div id="add-book-btn">Add new book</div>
 
-    <div id="spritz-reader">
-      <div id="spritzer"></div>
-          <p>Paste text below</p>
-          <textarea id="inputText" rows="12" cols="70"></textarea>
-          <button class="btn btn-primary" id="startSpritz" type="submit">Start</button>
-    </div>
+  <div class="book-list">
+    <div class="loading">Loading books...</div>
+    <div id="books-container"></div>
+  </div>
 
-    <form id="add-book-form">
+  <div id="spritz-reader">
+    <div id="spritzer"></div>
+    <p>Paste text below</p>
+    <textarea id="inputText" rows="12" cols="70"></textarea>
+    <button class="btn btn-primary" id="startSpritz" type="submit">Start</button>
+  </div>
+
+  <form id="add-book-form">
     <h1>Add a New Book</h1>
     <div class="add-book-input">
-        <input type="text" class="form-input" id="book-title" placeholder="book Title">
+      <input type="text" class="form-input" id="book-title" placeholder="book Title">
     </div>
     <div class="add-book-input">
-        <input class="form-input" type="text" id="book-author" placeholder="book author">
+      <input class="form-input" type="text" id="book-author" placeholder="book author">
     </div>
     <div class="add-book-input">
-        <input class="form-input" type="text" id="book-url" placeholder="book image url">
+      <input class="form-input" type="text" id="book-url" placeholder="book image url">
     </div>
     <div class="add-book-textbox">
-        <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
+      <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
     </div>
-    <button id="add-book" type="submit" class="submit">Save & Submit Book</button>
+    <button id="cancel-add-book" class="btn">Cancel</button>
+    <button id="add-book" type="submit" class="submit btn">Save & Submit Book</button>
   </form>
 
+  <script type="text/javascript" src="index.js"></script>
 
-  <script type="text/javascript">
-  $(document).ready(function() {
-      var SpritzSettings = {
-        clientId: "4524122930975538943",
-        redirectUri: "http://tiffanyzhong.github.com/login_success.html",
-      };
-
-      var onStartSpritzClick = function(event) {
-      var text = $('#inputText').val();
-      var locale = "en_us;";
-   
-      // Send to SpritzEngine to translate
-      SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
-      };
-
-      (function() {
-        var spritzController = null;
-
-        var onSpritzifySuccess = function(spritzText) {
-          spritzController.startSpritzing(spritzText);
-        };
-        
-        var onSpritzifyError = function(error) {
-          alert("Unable to Spritz: " + error.message);
-        };
-          
-        function clearTextClick() {
-            $("#inputText").val("");
-        }
-        
-        function fillTextClick() {
-          var testText = "Spritzing content from the web is also easy. All you need to do is publish content on the web, "
-            + " and our platform can transform it into Spritz Text. The default configuration simply extracts all text " 
-            + "from the HTML at the target URL, but advanced configuration allows finer control using CSS-like selectors.";       
-          var text = $("#inputText").val();     
-            $("#inputText").val(text + (text != "" ? "\n" : "") + testText);
-        }
-
-        function onStartSpritzClick(event) {
-          var text = $('#inputText').val();
-          var locale = "en_us;";
-          
-          // Send to SpritzEngine to translate
-          SpritzClient.spritzify(text, locale, onSpritzifySuccess, onSpritzifyError);
-        };
-        
-        
-        // Customized options
-        var customOptions = {
-            "redicleWidth" :  434,  // Specify Redicle width
-            "redicleHeight" :   76    // Specify Redicle height
-        };
-
-        var init = function() {
-          
-          $("#clear").on("click", clearTextClick);
-          $("#fill").on("click", fillTextClick);
-          $("#startSpritz").on("click", onStartSpritzClick);      
-           
-          // Construct a SpritzController passing the customization options
-          spritzController = new SPRITZ.spritzinc.SpritzerController(customOptions);
-          
-          // Attach the controller's container to this page's "spritzer" container
-          spritzController.attach($("#spritzer"));
-        };
-        
-        
-        $(document).ready(function() {
-          init();
-        });
-
-        
-      })();
-
-      // Add book form popup
-
-      $("#add-book-btn").click(function() {
-        $("#add-book-form").fadeToggle( "slow" );
-      });
-
-      // Firebase add new books
-
-      var ref = new Firebase("https://dashapp.firebaseio.com");
-
-      $("#add-book").bind("click", function() {
-      var bookTitle = $("#book-title").val();
-      var bookAuthor = $("#book-author").val();
-      var bookUrl = $("#book-url").val();
-      var bookContent = $("#book-content").val();
-      
-      var booksRef = ref.child("books");
-      
-      booksRef.push({title: bookTitle, author: bookAuthor, url: bookUrl, content: bookContent}, function(error) {
-          if (error !== null) {
-              alert('Unable to push comments to Firebase!');
-          } else {
-            console.log('data sent!');
-            $(".form-input").val("");
-            $("#add-book-form").fadeOut( "slow" );
-          }
-      });
-      
-      return false;
-      });
-
-      // Firebase display books
-
-      var booksRef = ref.child("books");
-      booksRef.on('child_added', function (snapshot) {
-        var newBook = snapshot.val();
-        console.log("Author: " + newBook.author);
-        console.log("Title: " + newBook.title);
-
-        var booksContainer = $('#books-container');
- 
-            $('<div/>', {class: 'book-container'})
-                .html('<div class="b-label">' 
-                    + newBook.title + '</div>' + '<div class="b-author">' + newBook.author + '</div>' + '<img class="b-cover" src="' + newBook.url + '"/>' + '<div class="b-content" style="display: none;">' + newBook.author + '</div>').appendTo(booksContainer);
- 
-            booksContainer.scrollTop(booksContainer.prop('scrollHeight'));
-      });
-    });
-    </script>
-
-  </body>
+</body>
 </html>
