@@ -1,9 +1,6 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Dash - Speed Reading App</title>
-    <style>
-    </style>
+<head>
 
     <!-- jQuery dependency -->
     <script type="text/javascript" src="http://sdk.spritzinc.com/jQuery/jquery-2.1.0.min.js"></script>
@@ -20,47 +17,60 @@
     </script>       
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
+  <script src="http://sdk.spritzinc.com/jQuery/jquery-2.1.0.min.js"></script>
+  <script src="http://sdk.spritzinc.com/js/1.0/js/spritz.min.js"></script>
+  <script src="spritz-setup.js"></script>
+  <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
+  <script src="index.js"></script>
 
-  </head>
-  <body>
-    <div class="logo">
-      DASH <span class="tagline">A speed reading app</span>
-    </div>
-    <div id="add-book-btn">Add New Book</div>
-      <div class="book-list">
-        <div id="books-container"></div>
-      </div>
+  <link id="spritz-css" rel="stylesheet" type="text/css" href="http://sdk.spritzinc.com/js/1.0/css/spritz.min.css" media="all">
+  <link rel="stylesheet" type="text/css" href="style.css" media="all">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
 
+</head>
+<body>
 
-    <div id="spritz-reader">
-      <div id="spritzer"></div>
-      <div style="visibility: hidden;">
+  <div class="logo">
+    DASH <span class="tagline">A speed reading app</span>
+  </div>
+
+  <div id="add-book-btn">Add new book</div>
+
+  <div class="book-list">
+    <div class="loading">Loading books...</div>
+    <div id="books-container"></div>
+  </div>
+
+  <div id="spritz-reader">
+    <div id="spritzer"></div>
+    <div style="visibility: hidden;">
       <textarea id="inputText" rows="12" cols="70"></textarea>
       <p class="muted">
-        <small>Paste your own text into the field above or click the <b>Fill</b> button to load the sample text, and then click the <b>Spritz!</b> button to start spritzing.</small><br>
-        <small>To remove the text from the field, click the <b>Clear</b> button.</small>
+      <small>Paste your own text into the field above or click the <b>Fill</b> button to load the sample text, and then click the <b>Spritz!</b> button to start spritzing.</small><br>
+      <small>To remove the text from the field, click the <b>Clear</b> button.</small>
       </p>
       <button class="btn btn-default" id="fill" type="submit">Fill</button>
-      <button class="btn btn-default" id="clear" type="submit">Clear</button>   
-      <a style="visibility: visible !important;"class="btn btn-primary" id="startSpritz" type="submit">Start Reading</a>
+      <button class="btn btn-default" id="clear" type="submit">Clear</button>
+      <button style="visibility: visible !important;"class="btn btn-primary" id="startSpritz" type="submit">Spritz!</button>
     </div>
-    </div>
+  </div>
 
-    <form id="add-book-form">
+  <form id="add-book-form">
     <h1>Add a New Book</h1>
     <div class="add-book-input">
-        <input type="text" class="form-input" id="book-title" placeholder="book Title">
+      <input type="text" class="form-input" id="book-title" placeholder="book Title">
     </div>
     <div class="add-book-input">
-        <input class="form-input" type="text" id="book-author" placeholder="book author">
+      <input class="form-input" type="text" id="book-author" placeholder="book author">
     </div>
     <div class="add-book-input">
-        <input class="form-input" type="text" id="book-url" placeholder="book image url">
+      <input class="form-input" type="text" id="book-url" placeholder="book image url">
     </div>
     <div class="add-book-textbox">
-        <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
+      <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
     </div>
-    <button id="add-book" type="submit" class="submit">Save & Submit Book</button>
+    <button id="cancel-add-book" class="btn">Cancel</button>
+    <button id="add-book" type="submit" class="submit btn">Save & Submit Book</button>
   </form>
 
 
@@ -136,3 +146,4 @@
 
   </body>
 </html>
+
