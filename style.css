@@ -98,6 +98,7 @@ body {
 }
 
 .book-container {
+  cursor: pointer;
   margin-right: 30px;
   display: inline-block;
   float: left;
@@ -114,7 +115,37 @@ body {
   cursor: pointer;
 }
 
-.spritzer-wrapper {
-  margin: 20px auto 0;
+#spritz-reader {
+  position: relative;
+}
+
+#startSpritz {
+  z-index: 99999;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.powered-by-spritz {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+
+.spritz-canvas {
+  margin: 0 auto;
+  width: 450px;
+  height: 80px;
+  display: block;
+}
+
+#spritzer {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 
