@@ -30,20 +30,18 @@
       
       var booksRef = ref.child("books");
     
-      booksRef.push({title: "asfadsfsd", author: "asdfasdfads", content: "asdfsadfsd"}, function(error) {
+      booksRef.push({title: bookTitle, author: bookAuthor, content: bookContent}, function(error) {
           if (error !== null) {
               alert('Unable to push comments to Firebase!');
           } else {
             console.log('data sent!');
+            titleRaw.val("");
+            authorRaw.val("");
+            contentRaw.val("");
           }
       });
-
-      titleRaw.val("");
-      authorRaw.val("");
-      contentRaw.val("");
       
-     
-        return false;
+      return false;
     });
     </script>
 </body>
