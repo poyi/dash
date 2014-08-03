@@ -1,4 +1,5 @@
 // Firebase reference
+var Firebase = require("firebase");
 
 var ref = new Firebase("https://dashapp.firebaseio.com/books");
 // Attach an asynchronous callback to read the data at our posts reference
