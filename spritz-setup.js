@@ -32,8 +32,9 @@
   
   // Customized options
   var customOptions = {
-      "redicleWidth" :  434,  // Specify Redicle width
-      "redicleHeight" :   76    // Specify Redicle height
+            placeholderText:    { startText: '' },
+      redicleWidth:       434,  // Specify Redicle width
+      redicleHeight:      76    // Specify Redicle height
   };
 
   var init = function() {
@@ -56,6 +57,4 @@
 
   
 })();
-
-
 
