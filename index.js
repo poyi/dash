@@ -5,6 +5,13 @@ $(document).ready(function() {
     window.location.reload();
   });
 
+
+$('.button-container').hide();
+  $('#startSpritz').click(function(){
+    $('.button-container').fadeIn();
+    $('#startSpritz').hide();
+  })
+
   // Add book form popup
   $("#add-book-btn, #cancel-add-book").click(function(e) {
     e.preventDefault();
@@ -58,15 +65,18 @@ $(document).ready(function() {
     $(".book-container").click(function() {
 
       var text = $(this).children('.b-content').text();
+      var title = $(this).children('.b-label').text();
+      var author = $(this).children('.b-author').text();
 
-      // Fetch the data object with clicked element ID
-      console.log(text);
+      console.log(author);
 
       $("#inputText").val(text);
+      $(".book-label").html(title);
+      $(".book-author").html(author);
 
       $('.book-list').hide();
       $('#spritz-reader').fadeIn('Slow');
-
+      $('.tagline').replaceWith('<span class="taglineBig">Back to Library</span>');
     });
 
     $('.loading').hide();

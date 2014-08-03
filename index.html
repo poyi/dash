@@ -28,24 +28,21 @@
 
   <div id="add-book-btn">Add new book</div>
 
+  <div class="loading">
+      <div class="spinner"></div>
+      <span class="loading-text">Loading Library...</span>
+    </div>
+
   <div class="book-list">
-    <div class="loading">Loading books...</div>
     <div id="books-container"></div>
   </div>
 
   <div id="spritz-reader">
-    <div id="spritzer"></div>
-    <div style="visibility: hidden;">
-      <textarea id="inputText" rows="12" cols="70"></textarea>
-      <p class="muted">
-      <small>Paste your own text into the field above or click the <b>Fill</b> button to load the sample text, and then click the <b>Spritz!</b> button to start spritzing.</small><br>
-      <small>To remove the text from the field, click the <b>Clear</b> button.</small>
-      </p>
-      <button class="btn btn-default" id="fill" type="submit">Fill</button>
-      <button class="btn btn-default" id="clear" type="submit">Clear</button>
-      <button style="visibility: visible !important;"class="btn btn-primary" id="startSpritz" type="submit">Spritz!</button>
-    </div>
+    <div id="spritzer">
+      <div class="book-label"></div>
+    <div class="book-author"></div>
   </div>
+  <a style="visibility: visible !important;"class="btn btn-primary" id="startSpritz" type="submit">Click Here to Start Reading!</a>
 
   <form id="add-book-form">
     <h1>Add a New Book</h1>
@@ -64,7 +61,9 @@
     <button id="cancel-add-book" class="btn">Cancel</button>
     <button id="add-book" type="submit" class="submit btn">Save & Submit Book</button>
   </form>
-
+<div style="visibility: hidden;">
+      <textarea id="inputText" rows="12" cols="70"></textarea>
+    </div>
   </body>
 </html>
 
