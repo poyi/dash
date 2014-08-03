@@ -26,6 +26,24 @@
     DASH <span class="tagline">A speed reading app</span>
   </div>
 
+   <form id="add-book-form">
+    <h1>Add a New Book</h1>
+    <div class="add-book-input">
+      <input type="text" class="form-input" id="book-title" placeholder="book Title">
+    </div>
+    <div class="add-book-input">
+      <input class="form-input" type="text" id="book-author" placeholder="book author">
+    </div>
+    <div class="add-book-input">
+      <input class="form-input" type="text" id="book-url" placeholder="book image url">
+    </div>
+    <div class="add-book-textbox">
+      <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
+    </div>
+    <span class="submit btn" id="cancel-add-book" class="btn">Cancel</span>
+    <button id="add-book" type="submit" class="submit btn">Save & Submit Book</button>
+  </form>
+
   <div id="add-book-btn">Add new book</div>
 
   <div class="loading">
@@ -44,23 +62,7 @@
   </div>
   <a style="visibility: visible !important;"class="btn btn-primary" id="startSpritz" type="submit">Click Here to Start Reading!</a>
 
-  <form id="add-book-form">
-    <h1>Add a New Book</h1>
-    <div class="add-book-input">
-      <input type="text" class="form-input" id="book-title" placeholder="book Title">
-    </div>
-    <div class="add-book-input">
-      <input class="form-input" type="text" id="book-author" placeholder="book author">
-    </div>
-    <div class="add-book-input">
-      <input class="form-input" type="text" id="book-url" placeholder="book image url">
-    </div>
-    <div class="add-book-textbox">
-      <textarea class="form-input" id="book-content" type="text" placeholder="book Content"></textarea>
-    </div>
-    <button id="cancel-add-book" class="btn">Cancel</button>
-    <button id="add-book" type="submit" class="submit btn">Save & Submit Book</button>
-  </form>
+ 
 <div style="visibility: hidden;">
       <textarea id="inputText" rows="12" cols="70"></textarea>
     </div>

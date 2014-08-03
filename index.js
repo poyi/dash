@@ -13,15 +13,18 @@ $('.button-container').hide();
   })
 
   // Add book form popup
-  $("#add-book-btn, #cancel-add-book").click(function(e) {
-    e.preventDefault();
+  $("#add-book-btn").click(function() {
     $("#add-book-form").fadeToggle( "slow" );
+  });
+
+   $("#cancel-add-book").click(function() {
+    $("#add-book-form").fadeOut( "slow" );
   });
 
   // Firebase add new books
   var ref = new Firebase("https://dashapp.firebaseio.com");
 
-  $("#add-book").bind("click", function() {
+  $("#add-book").click(function() {
     var bookTitle = $("#book-title").val();
     var bookAuthor = $("#book-author").val();
     var bookUrl = $("#book-url").val();
@@ -38,7 +41,6 @@ $('.button-container').hide();
           $("#add-book-form").fadeOut( "slow" );
         }
     });
-
     return false;
   });
 

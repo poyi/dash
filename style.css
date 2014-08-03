@@ -48,6 +48,7 @@ body {
 
 #add-book-form {
   display: none;
+  z-index: 9999999;
   height: 500px;
   width: 500px;
   position: absolute;
@@ -80,9 +81,9 @@ body {
 .book-list {
   position: absolute;
   top: 120px;
-  width: 90%;
-  height: 90%;
-  left: 7%;
+  width: 100%;
+  height: 100%;
+  left: 5%;
 }
 
 .b-label {
