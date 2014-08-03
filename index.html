@@ -1,14 +1,6 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
-    <!-- jQuery dependency -->
-    <script type="text/javascript" src="http://sdk.spritzinc.com/jQuery/jquery-2.1.0.min.js"></script>
-    <link id="spritz-css" rel="stylesheet" type="text/css" href="http://sdk.spritzinc.com/js/1.0/css/spritz.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="style.css" media="all">
-    <script src="https://cdn.firebase.com/js/client/1.0.18/firebase.js"></script>
-    <script type="text/javascript" src="http://sdk.spritzinc.com/js/1.0/js/spritz.min.js"></script>
-    <script type="text/javascript" src="spritz-setup.js"></script>
     <script type="text/javascript">
       var SpritzSettings = {
         clientId: "4524122930975538943",
@@ -72,77 +64,6 @@
     <button id="cancel-add-book" class="btn">Cancel</button>
     <button id="add-book" type="submit" class="submit btn">Save & Submit Book</button>
   </form>
-
-
-  <script type="text/javascript">
-  $(document).ready(function() {
-
-      // Add book form popup
-
-      $("#add-book-btn").click(function() {
-        $("#add-book-form").fadeToggle( "slow" );
-      });
-
-      // Firebase add new books
-
-      var ref = new Firebase("https://dashapp.firebaseio.com");
-
-      $("#add-book").bind("click", function() {
-      var bookTitle = $("#book-title").val();
-      var bookAuthor = $("#book-author").val();
-      var bookUrl = $("#book-url").val();
-      var bookContent = $("#book-content").val();
-      
-      var booksRef = ref.child("books");
-      
-      booksRef.push({title: bookTitle, author: bookAuthor, url: bookUrl, content: bookContent}, function(error) {
-          if (error !== null) {
-              alert('Unable to push comments to Firebase!');
-          } else {
-            console.log('data sent!');
-            $(".form-input").val("");
-            $("#add-book-form").fadeOut( "slow" );
-          }
-      });
-      
-      return false;
-      });
-
-      // Firebase display books
-
-      var booksRef = ref.child("books");
-      booksRef.on('child_added', function (snapshot) {
-        var newBook = snapshot.val();
-        console.log("Author: " + newBook.author);
-        console.log("Title: " + newBook.title);
-        console.log("Content: " + newBook.content);
-
-        var booksContainer = $('#books-container');
- 
-            $('<div>', {class: 'book-container'})
-                .html('<div class="b-label">' 
-                    + newBook.title + '</div>' + '<div class="b-author">' + newBook.author + '</div>' + '<img class="b-cover" src="' + newBook.url + '"/>' + '<div class="b-content" style="display: none;">' + newBook.content + '</div>').appendTo(booksContainer);
-
-        // Click to read
-        $(".book-container").click(function() {
-
-          var text = $(this).children('.b-content').text();
-
-          // Fetch the data object with clicked element ID
-          
-          console.log(text);
-
-          $("#inputText").val(text); 
-
-          $('.book-list').hide();
-          $('#spritz-reader').fadeIn('Slow');
-
-        });
-
-      });
-
-    });
-    </script>
 
   </body>
 </html>
