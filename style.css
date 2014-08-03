@@ -233,9 +233,7 @@ a.powered-by-spritz {
 }
 
 .spritzer-speed {
-  position: fixed !important;
-  right: 35%;
-  top: 32%;
+  margin-right: 130px;
 }
 
 .spritzer-btns-4 {
