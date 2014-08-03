@@ -103,16 +103,22 @@ body {
 
 #startSpritz {
   z-index: 99999;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
-.powered-by-spritz {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  color: white;
+a.powered-by-spritz {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+}
+
+.spritzer-container {
+  background: transparent !important;
 }
 
 .spritz-canvas {
@@ -120,6 +126,12 @@ body {
   width: 450px;
   height: 80px;
   display: block;
+}
+
+.dropdown-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 }
 
 #spritzer {
