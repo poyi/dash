@@ -231,10 +231,13 @@ a.powered-by-spritz {
   display: none;
 }
 
-.spritzer-container .spritzer-wpm-btn {
-padding: 0 5px;
-background-color: #F5F5F5;
-border: 1px solid;
-border-color: #ccc;
-min-height: 30px;
+.spritzer-container {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.spritzer-speed {
+  position: fixed !important;
+  right: 30px;
+  bottom: 30px;
 }
